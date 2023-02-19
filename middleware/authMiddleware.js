@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 import User from "../models/userModel.js";
 
-const auth = async (req, res, next) => {
+export default async (req, res, next) => {
   let token;
 
   if (
@@ -28,5 +28,3 @@ const auth = async (req, res, next) => {
     res.status(401).json({ message: "Not Authorized, No Token" });
   }
 };
-
-export default auth;

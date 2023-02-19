@@ -1,14 +1,8 @@
 import express from "express";
-import {
-  getPhotos,
-  getPhoto,
-  getUserPhotos,
-} from "../controllers/photoController.js";
+import * as photoCtrl from "../controllers/photoController.js";
 
-const router = express.Router();
+export const photoRouter = express.Router();
 
-router.route("/").get(getPhotos);
-router.route("/:id").get(getPhoto);
-router.route("/user/:username").get(getUserPhotos);
-
-export default router;
+photoRouter.get("/", photoCtrl.getPhotos);
+photoRouter.get("/:id", photoCtrl.getPhoto);
+photoRouter.get("/user/:username", photoCtrl.getUserPhotos);

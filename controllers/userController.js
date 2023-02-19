@@ -5,7 +5,7 @@ import User from "../models/userModel.js";
 // @desc Register User
 // @route POST /api/users/register
 // @access Public
-const registerUser = async (req, res) => {
+export const registerUser = async (req, res) => {
   const { username, email, password } = req.body;
 
   if (!username || !email || !password) {
@@ -48,7 +48,7 @@ const registerUser = async (req, res) => {
 // @desc Authenticate a User
 // @route POST /api/users/login
 // @access Public
-const loginUser = async (req, res) => {
+export const loginUser = async (req, res) => {
   const { email, password } = req.body;
 
   try {
@@ -73,7 +73,7 @@ const loginUser = async (req, res) => {
 // @desc Get User Data
 // @route GET  /api/users/me
 // @access Private
-const getMe = async (req, res) => {
+export const getMe = async (req, res) => {
   const { id, username, email } = await User.findById(req.user.id);
   res.status(200).json({ id, username, email });
 };
@@ -84,5 +84,3 @@ const generateToken = (id) => {
     expiresIn: "30d",
   });
 };
-
-export { registerUser, loginUser, getMe };
