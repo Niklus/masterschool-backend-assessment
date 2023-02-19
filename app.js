@@ -1,11 +1,16 @@
 import express from "express";
 import * as dotenv from "dotenv";
+import connectDB from "./config/db.js";
+
+// Routes
+import photoRoutes from "./routes/photoRoutes.js";
+import userRoutes from "./routes/userRoutes.js";
 
 // Load environment variables
 dotenv.config();
 
-// Routes
-import photoRoutes from "./routes/photoRoutes.js";
+// Connect DB
+connectDB();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -20,6 +25,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/photos", photoRoutes);
+app.use("/api/users", userRoutes);
 
 app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`);
