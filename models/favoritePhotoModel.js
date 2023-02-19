@@ -19,6 +19,10 @@ const favoritePhotoSchema = mongoose.Schema(
       type: String,
       required: [true, "please provide a username"],
     },
+    explanation: {
+      type: String,
+      required: false,
+    },
   },
   {
     timestamps: true,
